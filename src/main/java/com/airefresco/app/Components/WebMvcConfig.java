@@ -1,9 +1,10 @@
-package com.airefresco.app.Components;
+/**package com.airefresco.app.Components;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
@@ -21,16 +22,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
     
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry){
-    	registry.addResourceHandler("/static/**")
-        .addResourceLocations("/front-end/build/static");
-      registry.addResourceHandler("/*.js")
-        .addResourceLocations("/front-end/build/");
-      registry.addResourceHandler("/*.json")
-        .addResourceLocations("/front-end/build/");
-      registry.addResourceHandler("/*.ico")
-        .addResourceLocations("/front-end/build/");
-      registry.addResourceHandler("/index.html")
-        .addResourceLocations("/front-end/build/index.html");
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("");
+        registry.addViewController("/index").setViewName("");
+        registry.addViewController("/login").setViewName("");
     }
 }
+**/

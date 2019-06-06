@@ -1,5 +1,9 @@
 package com.airefresco.app.Controller;
 
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,15 +13,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.airefresco.app.Security.JwtProvider;
 
 @RestController
 @CrossOrigin(origins="http://localhost:8080")
-public class UnauthenticatedController {
+public class MainControllerRest {
 	
 	@Autowired
 	UserDetailsService uds;
@@ -27,8 +27,8 @@ public class UnauthenticatedController {
 	
 	@Autowired
 	JwtProvider tokenProvider;
-	
-	@PostMapping(value="/portal/Login")
+		
+	@PostMapping(value="/login")
 	public ResponseEntity<?> createAuthenticationToken(@RequestParam("un") String userName, @RequestParam("pwd") String pass ){
 		
 		Authentication authentication = this.authenticate(userName, pass);
@@ -41,9 +41,10 @@ public class UnauthenticatedController {
 	private Authentication authenticate(String un, String pwd) {
 		return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(un, pwd));
 	}
-	
-	@RequestMapping(value= {"/portal","/",""})
-	public String getIndex() {
-		return "index";
+		
+	@GetMapping(value= {"/login","/Home"})
+	public String index() {
+		return "";
 	}
+	
 }

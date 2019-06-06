@@ -49,6 +49,7 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<!-- ######################################################################################################### -->
 		<dependency>
 		    <groupId>io.jsonwebtoken</groupId>
 		    <artifactId>jjwt</artifactId>
@@ -58,6 +59,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+		<!-- ######################################################################################################### -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -82,39 +84,45 @@
 				</configuration>
            </plugin>
 			<plugin>
-				<groupId>com.github.eirslett</groupId>
-				<artifactId>frontend-maven-plugin</artifactId>
-				<version>1.7.6</version>
-				<configuration>
-			        <nodeVersion>v10.11.0</nodeVersion>
-			        <npmVersion>6.4.1</npmVersion>
-			        <workingDirectory>src/main/webapp/front-end</workingDirectory>
+			    <groupId>com.github.eirslett</groupId>
+			    <artifactId>frontend-maven-plugin</artifactId>
+			    <version>1.6</version>
+			    <configuration>
+			        <workingDirectory>front-end</workingDirectory>
+			        <installDirectory>target</installDirectory>
 			    </configuration>
-				<executions>
-					<execution>
-						<id>install node and npm</id>
-						<goals>
-							<goal>install-node-and-npm</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>npm install</id>
-						<goals>
-							<goal>npm</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>npm run build</id>
-						<goals>
-							<goal>npm</goal>
-						</goals>
-						<configuration>
-							<arguments>run build</arguments>
-						</configuration>
-					</execution>
-				</executions>
+			    <executions>
+			        <execution>
+			            <id>install node and npm</id>
+			            <goals>
+			                <goal>install-node-and-npm</goal>
+			            </goals>
+			            <configuration>
+			                <nodeVersion>v8.9.4</nodeVersion>
+			                <npmVersion>5.6.0</npmVersion>
+			            </configuration>
+			        </execution>
+			        <execution>
+			            <id>npm install</id>
+			            <goals>
+			                <goal>npm</goal>
+			            </goals>
+			            <configuration>
+			                <arguments>install</arguments>
+			            </configuration>
+			        </execution>
+			        <execution>
+			            <id>npm run build</id>
+			            <goals>
+			                <goal>npm</goal>
+			            </goals>
+			            <configuration>
+			                <arguments>run build</arguments>
+			            </configuration>
+			        </execution>
+			    </executions>
 			</plugin>
-			<!--plugin>
+			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<executions>
 					<execution>
@@ -122,7 +130,7 @@
 						<configuration>
 							<target>
 								<copy todir="${project.build.directory}/classes/public">
-									<fileset dir="${project.basedir}/frontend/build"/>
+									<fileset dir="${project.basedir}/front-end/build"/>
 								</copy>
 							</target>
 						</configuration>
@@ -131,7 +139,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin-->
+			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
